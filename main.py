@@ -5,8 +5,8 @@ import time
 #from dotenv import load_dotenv
 
 from langchain.embeddings import HuggingFaceEmbeddings
-from langchain_community.document_loaders import UnstructuredURLLoader
-from langchain_community.vectorstores import FAISS
+from langchain.document_loaders import UnstructuredURLLoader
+from langchain.vectorstores import FAISS
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 #load_dotenv()

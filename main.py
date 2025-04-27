@@ -114,7 +114,8 @@ if process_url_clicked:
     main_placeholder.text("Text Splitter...Started...✅✅✅")
     docs = text_splitter.split_documents(data)
 
-    embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+
     vectorstore_openai = FAISS.from_documents(docs, embeddings)
 
     main_placeholder.text("Embedding Vector Started Building...✅✅✅")

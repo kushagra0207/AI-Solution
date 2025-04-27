@@ -93,15 +93,16 @@ if process_url_clicked:
     main_placeholder.text("Embedding & Vectorstore Building...✅✅✅")
     time.sleep(2)
 
-    with open(file_path, "wb") as f:
-        pickle.dump(vectorstore_openai, f)
+    vectorstore_openai.save_local("faiss_index")
+
 
 # 🧠 Question Answering
 query = main_placeholder.text_input("Question: ")
 if query:
     if os.path.exists(file_path):
-        with open(file_path, "rb") as f:
-            vectorstore = pickle.load(f)
+        embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+        vectorstore = FAISS.load_local("faiss_index", embeddings)
+
 
         retrieved_docs = vectorstore.similarity_search(query, k=1)
         st.markdown("### Answer:")
